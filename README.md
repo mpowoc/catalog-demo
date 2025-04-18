@@ -1,6 +1,8 @@
 Catalog Demo
 ============
 
+## Getting Started
+
 If all the prerequisites are satisfied, start a venv and install dependencies:
 ```
 python3 -m venv env
@@ -20,7 +22,20 @@ python manage.py migrate
 python manage.py createsuperuser --username admin --email admin@example.com
 ```
 
+Create and populate Opensearch indices
+```
+python manage.py opensearch index create
+python3 manage.py opensearch document index
+```
+
 TODO: requirements.txt has a mix of dev dependencies. Clean up.
+
+## Dev Commands/Utilities
+
+Check local SQS queues
+```
+awslical sqs list-queues
+```
 
 ## Environment Prerequisites
 
@@ -47,6 +62,7 @@ The project's version is stored in `.python-version`, recognized by pyenv
 - k9s: `brew install k9s`
 - terraform: `brew tap hashicorp/tap && brew install hashicorp/tap/terraform`
 - tflocal: `pip install terraform-local`
+- awscli: `brew install awscli`
 - awscli-local: `pip install awscli-local`
 
 
