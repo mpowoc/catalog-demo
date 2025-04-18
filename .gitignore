@@ -1,0 +1,25 @@
+.vscode/*
+.history/
+*.visx
+
+.idea/*
+
+env
+env/*
+
+*.tfstate
+*.tfstate.*
+.terraform.locl.hcl
+
+
+.local_environment_data
+local_environment_data
+
+# Byte-compiled / optimized / DLL files
+__pycache__
+*.py[cod]
+*$py.class
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt

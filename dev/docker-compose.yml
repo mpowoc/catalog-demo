@@ -1,0 +1,40 @@
+name: catalog-demo
+
+services:
+  catalog-demo:
+    build: .
+    container_name: catalog-demo
+    image: catalog-demo
+    ports:
+      - "8000:8000"
+  catalog-postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.local_environment_data/.db_volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=localDbPass
+      - POSTGRES_USER=localDbAdmin
+      - POSTGRES_DB=catalog
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    image: localstack/localstack:latest
+    ports:
+      - "127.0.0.1:4566:4566"           # Gateway
+      - "127.0.0.1:4510-4559:4510-4559" # Service port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - AWS_CBOR_DISABLE=true
+      - USE_SSL=true
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
+      - OPENSEARCH_ENDPOINT_STRATEGY=path
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./.local_environment_data/.volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      default:
+        aliases:
+          - s3.localhost.localhost.cloud
+          - local-catalog-opensearch.s3.localhost.localstack.cloud
