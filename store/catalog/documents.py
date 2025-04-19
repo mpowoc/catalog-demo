@@ -4,7 +4,7 @@ from .models import CatalogItem
 
 
 @registry.register_document
-class CatalogItem(Document):
+class CatalogItemDocument(Document):
     class Index:
         name = 'items'  # Name of the Opensearch index
         settings = {  # See Opensearch Indices API reference for available settings

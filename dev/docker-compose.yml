@@ -29,12 +29,14 @@ services:
       - USE_SSL=true
       - AWS_ACCESS_KEY_ID=dummy
       - AWS_SECRET_ACCESS_KEY=dummy
-      - OPENSEARCH_ENDPOINT_STRATEGY=path
+      - OPENSEARCH_ENDPOINT_STRATEGY=domain
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./.local_environment_data/.volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
       default:
         aliases:
-          - s3.localhost.localhost.cloud
-          - local-catalog-opensearch.s3.localhost.localstack.cloud
+          - store-dev-es.us-east-1.opensearch.localhost.localstack.cloud
+          # - s3.localhost.localhost.cloud
+          # - local-catalog-opensearch.s3.localhost.localstack.cloud
+          # - store-dev-es.s3.localhost.localstack.cloud

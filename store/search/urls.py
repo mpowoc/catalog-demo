@@ -1,6 +1,6 @@
 from django.urls import path
 
-from search.views import SearchCatalogItems
+from .views import SearchCatalogItems
 
 urlpatterns = [
     path("catalogitems/<str:query>/", SearchCatalogItems.as_view()),

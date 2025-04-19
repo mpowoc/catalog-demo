@@ -48,9 +48,15 @@ REST_FRAMEWORK = {
 }
 
 OPENSEARCH_DSL = {
-    'default': {
-        'hosts': 'localhost:4566'
-    }
+        'default': {
+        'hosts': 'store-dev-es.us-east-1.opensearch.localhost.localstack.cloud:4566',
+        # 'http_auth': ("dummy", "dummy"),
+    },
+    'secure': {
+        'hosts': [{"scheme": "https", "host": "store-dev-es.us-east-1.opensearch.localhost.localstack.cloud", "port": 4566}],
+        'http_auth': ("dummy", "dummy"),
+        'timeout': 120,
+    },
 }
 
 MIDDLEWARE = [

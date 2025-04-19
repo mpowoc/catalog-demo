@@ -19,6 +19,7 @@ local_environment_data
 __pycache__
 *.py[cod]
 *$py.class
+*.pyc
 
 # Installer logs
 pip-log.txt

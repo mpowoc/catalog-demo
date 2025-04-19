@@ -41,9 +41,8 @@ class SearchCatalogItems(PaginatedElasticSearchAPIView):
     document_class = CatalogItemDocument
 
     def generate_q_expression(self, query):
-        return Q("bool",
-                 should=[
-                     Q("match", username=query),
-                     Q("match", first_name=query),
-                     Q("match", last_name=query),
-                 ], minimum_should_match=1)
+        return Q("multi_match", query=query,
+                fields=[
+                    "title",
+                    "description",
+                ], fuzziness="auto")
